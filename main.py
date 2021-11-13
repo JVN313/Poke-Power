@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
+from fpdf import FPDF
 import requests
+
 pokemon = input("Enter Pokemon Name: ")
 def poke_stat_getter(pokemon):
     site = requests.get(f"https://pokemondb.net/pokedex/{pokemon}").text
@@ -16,3 +18,8 @@ def poke_image_getter(pokemon):
 
 poke_stat_getter(pokemon)
 poke_image_getter(pokemon)
+
+pdf = FPDF("P", "mm", "Letter")
+pdf.add_page()
+pdf.image(f"{pokemon}.jpg")
+pdf.output(f"{pokemon}.pdf")
