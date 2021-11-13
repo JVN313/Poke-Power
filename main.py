@@ -8,7 +8,7 @@ def poke_stat_getter(pokemon):
     soup = BeautifulSoup(site, "lxml")
     stats = soup.find("div", class_="resp-scroll").text
     #stat_list = stats.split()
-    print(stats)
+    return str(stats)
 
 def poke_image_getter(pokemon):
      r = requests.get(f"https://img.pokemondb.net/artwork/{pokemon}.jpg")
@@ -16,10 +16,13 @@ def poke_image_getter(pokemon):
      image_open.write(r.content)
      image_open.close()
 
-poke_stat_getter(pokemon)
+print(poke_stat_getter(pokemon))
 poke_image_getter(pokemon)
+
 
 pdf = FPDF("P", "mm", "Letter")
 pdf.add_page()
 pdf.image(f"{pokemon}.jpg")
+pdf.set_font("helvetica", "", 16)
+pdf.cell(40, 30, poke_stat_getter(pokemon))
 pdf.output(f"{pokemon}.pdf")
