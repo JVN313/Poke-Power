@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 from fpdf import FPDF
 import requests
+import os
 
 pokemon = input("Enter Pokemon Name: ")
+
 def poke_stat_getter(pokemon):
     site = requests.get(f"https://pokemondb.net/pokedex/{pokemon}").text
     soup = BeautifulSoup(site, "lxml")
@@ -16,13 +18,16 @@ def poke_image_getter(pokemon):
      image_open.write(r.content)
      image_open.close()
 
+def poke_pdf(pokemon):
+    pdf = FPDF("P", "mm", "Letter")
+    pdf.add_page()
+    pdf.image(f"{pokemon}.jpg")
+    pdf.set_font("helvetica", "", 16)
+    pdf.cell(40, 30, poke_stat_getter(pokemon))
+    pdf.output(f"{pokemon}.pdf")
+    os.remove(f"{pokemon}.jpg")
+
+
 print(poke_stat_getter(pokemon))
 poke_image_getter(pokemon)
-
-
-pdf = FPDF("P", "mm", "Letter")
-pdf.add_page()
-pdf.image(f"{pokemon}.jpg")
-pdf.set_font("helvetica", "", 16)
-pdf.cell(40, 30, poke_stat_getter(pokemon))
-pdf.output(f"{pokemon}.pdf")
+poke_pdf(pokemon)
