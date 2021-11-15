@@ -23,7 +23,7 @@ def poke_pdf(pokemon):
     pdf.image(f"{pokemon}.jpg")
     pdf.set_font("helvetica", "", 16)
     pdf.cell(40, 30, poke_stat_getter(pokemon))
-    pdf.output(f"{pokemon}.pdf")
+    pdf.output(f"Pokemon-Files/{pokemon}.pdf")
     os.remove(f"{pokemon}.jpg")
 
 
