@@ -9,7 +9,6 @@ def poke_stat_getter(pokemon):
     site = requests.get(f"https://pokemondb.net/pokedex/{pokemon}").text
     soup = BeautifulSoup(site, "lxml")
     stats = soup.find("div", class_="resp-scroll").text
-    #stat_list = stats.split()
     return str(stats)
 
 def poke_image_getter(pokemon):
