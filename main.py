@@ -5,7 +5,7 @@ import requests
 import os
 
 pokemon = input("Enter Pokemon Name: ")
-    #TODO format varible strings for pdf text
+    #TODO format varible strings for pdf text / error proof for pokemon that don't evolve
 def poke_stat_getter(pokemon):
     global evolution, poke_name
     site = requests.get(f"https://pokemondb.net/pokedex/{pokemon}").text
