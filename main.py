@@ -27,7 +27,7 @@ def poke_pdf(pokemon):
     pdf.add_page()
     pdf.set_font("helvetica", "", 55)
     pdf.cell(0, 30, poke_name, ln=True, align="C")
-    pdf.image(f"{pokemon}.jpg", x=55 )
+    pdf.image(f"{pokemon}.jpg", x=55)
     pdf.set_font("helvetica", "", 16)
     pdf.cell(1000, 20, poke_stat_getter(pokemon), ln=True)
     pdf.cell(0, 20, evolution, ln=True, align="C")
