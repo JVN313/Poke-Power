@@ -1,10 +1,9 @@
-from ctypes import alignment
 from bs4 import BeautifulSoup
 from fpdf import FPDF
 import requests
 import os
 
-pokemon = input("Enter Pokemon Name: ")
+pokemon = input("Enter Pokemon Name: ").lower()
     #TODO format varible strings for pdf text / error proof for pokemon that don't evolve
 def poke_stat_getter(pokemon):
     global evolution, poke_name
@@ -28,7 +27,7 @@ def poke_pdf(pokemon):
     pdf.add_page()
     pdf.set_font("helvetica", "", 55)
     pdf.cell(0, 30, poke_name, ln=True, align="C")
-    pdf.image(f"{pokemon}.jpg", x=40 )
+    pdf.image(f"{pokemon}.jpg", x=55 )
     pdf.set_font("helvetica", "", 16)
     pdf.cell(1000, 20, poke_stat_getter(pokemon), ln=True)
     pdf.cell(0, 20, evolution, ln=True, align="C")
