@@ -4,7 +4,7 @@ Users input the name of a pokemon and Poke-Power returns the base stats of the g
 The pdf is stored in the Poke Files folder.
 All stat information is provided from Pokemondb.net
  # Current State
- Currently the program only runs for evoling pokemon ex. Pikachu, Eevee, Poliwag
+ Currently the pdf file needs to be made more user friendly
  # REQUIRED 
  pip install fpdf2
  # Tools Used 
