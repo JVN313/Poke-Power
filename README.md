@@ -8,8 +8,8 @@ All stat information is provided from Pokemondb.net
  # REQUIRED 
  pip install fpdf2
  # Tools Used 
- Beautiful Soup 4
- Requests
- FPDF
+ Beautiful Soup 4 <br>
+ Requests <br>
+ FPDF <br>
  # Future Work
  Format the information in the PDF file to be easier to read and more user friendly.
