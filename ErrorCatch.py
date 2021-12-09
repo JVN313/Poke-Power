@@ -1,11 +1,13 @@
+from bs4 import BeautifulSoup
+import requests
 
-def ErrorCatch(name):
-    while name is None:
-        try:
-            name = input("Invalid Input: Please Re-enter Pokemon Name \nEnter Pokemon Name: ")
-            return name
+def ErrorCatch(pokemon, evolve):
+    try:
+        site = requests.get(f"https://pokemondb.net/pokedex/{pokemon}").text
+        soup = BeautifulSoup(site, "lxml")
+        evolve = soup.find("div", class_="infocard-list-evo").text
+        return evolve
 
-        except AttributeError:
-            name = input("Invalid Input: Please Re-enter Pokemon Name \nEnter Pokemon Name: ")
-            continue
+    except AttributeError:
+        evolve = soup.find("em")
 

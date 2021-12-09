@@ -4,15 +4,20 @@ import requests
 import os
 
 pokemon = input("Enter Pokemon Name: ").lower()
-    #TODO format varible strings for pdf text / error proof for pokemon that don't evolve
+    #TODO format varible strings for pdf text 
 def poke_stat_getter(pokemon):
     global evolution, poke_name
     site = requests.get(f"https://pokemondb.net/pokedex/{pokemon}").text
     soup = BeautifulSoup(site, "lxml")
     stats = soup.find("div", class_="resp-scroll").text
-    evolution = soup.find("div", class_="infocard-list-evo").text
+    
+    try:
+        evolution = soup.find("div", class_="infocard-list-evo").text
+    except AttributeError:
+        evolution = soup.find("em").text + " Does Not Evolve"
+    
     poke_name = soup.find("h1").text
-    full_stats = str(stats) + str(evolution)
+    #full_stats = str(stats) + str(evolution)
     return str(stats)
 
 def poke_image_getter(pokemon):
